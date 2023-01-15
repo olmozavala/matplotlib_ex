@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import xarray as xr
 from os.path import join
-import cmocean
-import cv2
 
 ##  Reading data and plotting lats and lons
 in_file = "./test_data/hycom_glby_930_2021052912_t000_uv3z.nc"
