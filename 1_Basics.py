@@ -4,12 +4,12 @@ import matplotlib
 import matplotlib.animation as animation
 import numpy as np
 
-##%------------ data -----------
+#%%%------------ data -----------
 n = 100
 x = np.linspace(0,2*np.pi,n)
 y = np.sin(x)
 
-## ------------ plot line -----------
+#%% ------------ plot line -----------
 fig, ax = plt.subplots(1,1,figsize=(10,10))
 ax.set_title('Basic Plot')
 ax.plot(x,y, 'r', label='1')
@@ -19,7 +19,8 @@ ax.set_ylabel("Pericon")
 ax.legend()
 plt.show()
 
-## ------------ plot scatter -----------
+
+#%% ------------ plot scatter -----------
 fig, ax = plt.subplots(1,1,figsize=(10,10))
 ax.scatter(x,y, label='simplest')
 ax.scatter(x,y-.3, color='b', alpha=np.linspace(0,1,len(x)), label='alpha')    # alpha
@@ -29,9 +30,9 @@ ax.set_title("Scatter")
 ax.legend()
 plt.show()
 
-## ------------ COLOR BARS AND COLOR PALETTES-----------
+#%% ------------ COLOR BARS AND COLOR PALETTES-----------
 # Palettes here: https://matplotlib.org/stable/tutorials/colors/colormaps.html#sequential
-## ----------------- For single plot
+#%% ----------------- For single plot
 fig, ax = plt.subplots(1,1,figsize=(10,10))
 s1 = ax.scatter(x,y, c=np.linspace(0,1,len(x)), cmap='plasma')                    # palette
 s2 = ax.scatter(x,y-.2, c=np.linspace(0,1,len(x)), cmap='viridis',vmin=-1, vmax=2)
@@ -40,7 +41,7 @@ plt.colorbar(s2,label='label')
 plt.colorbar(s1)
 plt.show()
 
-## ----------------- For multiple plots
+#%% ----------------- For multiple plots
 fig, axs = plt.subplots(1,2,figsize=(10,10), gridspec_kw={'width_ratios': [3, 1]})
 s1 = axs[0].scatter(x,y, c=np.linspace(0,1,len(x)), cmap='plasma')                    # palette
 s2 = axs[1].scatter(x,y-.2, c=np.linspace(0,1,len(x)), cmap='viridis')                    # palette
@@ -50,7 +51,7 @@ fig.colorbar(s1,ax=axs[0])
 fig.colorbar(s2,ax=axs[1])
 plt.show()
 
-## ------------ Text (labels and ticks) options -----------
+#%% ------------ Text (labels and ticks) options -----------
 font_size = 20
 fig, ax = plt.subplots(1,1,figsize=(10,10))
 ax.set_title('Basic Plot')
@@ -65,7 +66,7 @@ ax.set_ylabel('This is my y label', fontsize=font_size)
 ax.legend()
 plt.show()
 
-## ------------ GRID options-----------
+#%% ------------ GRID options-----------
 fig, ax = plt.subplots(1,1,figsize=(10,10))
 ax.set_title('Basic Plot')
 ax.plot(x,y, 'r', label='1')
@@ -75,7 +76,7 @@ ax.legend()
 plt.show()
 
 
-## ------------ Box plot -----------
+#%% ------------ Box plot -----------
 # https://matplotlib.org/3.1.1/gallery/pyplots/boxplot_demo_pyplot.html#sphx-glr-gallery-pyplots-boxplot-demo-pyplot-py
 fig, ax = plt.subplots(figsize=(10,6))
 plt.title('Basic Plot')
@@ -93,7 +94,7 @@ for patch, color in zip(bp['boxes'], colors):
 
 plt.show()
 
-## ------------ bar plot-----------
+#%% ------------ bar plot-----------
 fig, ax = plt.subplots(1,1,figsize=(10,10))
 plt.title('BarPlot')
 # Multibars are hard to do directly with matplotlib
@@ -105,7 +106,7 @@ ax.bar(pos+ .2, [2.1,2.0])
 ax.legend()
 plt.show()
 
-## ------------ Pie plot-----------
+#%% ------------ Pie plot-----------
 # Pie chart, where the slices will be ordered and plotted counter-clockwise:
 labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
 sizes = [15, 30, 45, 10]
@@ -118,7 +119,7 @@ ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
 plt.show()
 
-## ---- Heat maps / images
+#%% ---- Heat maps / images
 import numpy as np
 
 n = 100
@@ -130,18 +131,18 @@ fig, ax = plt.subplots(1,1,figsize=(10,10))
 ax.imshow(X+Y, extent=(min(x),max(x),min(x),max(x)))
 plt.show()
 
-## Annotated heatmap
+#%% Annotated heatmap
 fig, ax = plt.subplots(1,1,figsize=(10,10))
 ax.imshow(X+Y)
 ax.text(n/2, n/2, "Sopas perico lico", color="red")
 plt.show()
 
-## -- Own default style ------------
+#%% -- Own default style ------------
 # Generate basic data
 x = np.linspace(0, np.pi*2, 100)
 y = np.sin(x)
 
-# ##%
+# #%%%
 # # Reading own  style
 plt.style.use('./my_matplotlib_sytles.mplstyle')
 plt.style.use('default') # Reset style

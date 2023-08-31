@@ -10,7 +10,7 @@ from os.path import join
 from functools import partial
 # Shader pipepline https://datashader.org/getting_started/Pipeline.html
 
-## Read data
+#%% Read data
 df = pd.read_csv('./test_data/nyc_taxi.csv', usecols=['dropoff_x', 'dropoff_y'])
 df.head()
 
@@ -21,11 +21,11 @@ lat, lon = transformer.transform(df['dropoff_x'],df['dropoff_y'])
 df = pd.DataFrame({'lat':lat, 'lon':lon})
 
 
-## Define the 'Canvas' or area where we want to plot our data
+#%% Define the 'Canvas' or area where we want to plot our data
 # https://datashader.org/api.html?highlight=dataarray#datashader.Canvas
 agg = ds.Canvas().points(df, 'lon', 'lat')  # Data to pixels
 
-## ------------ Simplest plot (convert dataarray to an image)--------------
+#%% ------------ Simplest plot (convert dataarray to an image)--------------
 # plt.imshow(agg.data, cmap=cc.cm.fire)
 back_folder = './map_backgrounds/'
 # img = plt.imread(join(back_folder, 'bluemarble.png'))
@@ -44,5 +44,5 @@ gl.xlabel_style = {'size': 10, 'weight':'bold'}
 # plt.colorbar(im, location='right', shrink=.6, pad=.12)
 plt.tight_layout()
 plt.show()
-##
+#%%
 

@@ -1,10 +1,11 @@
+#%%  Start
 import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
 import numpy as np
 import xarray as xr
 from os.path import join
 
-##  Reading data and plotting lats and lons
+#%%  Reading data and plotting lats and lons
 in_file = "./test_data/hycom_glby_930_2021052912_t000_uv3z.nc"
 ds = xr.load_dataset(in_file)
 lat_idxs = [np.where(ds.latitude > 15)[0][0] , np.where(ds.latitude > 31)[0][0]]
@@ -16,8 +17,8 @@ print(ds.info())
 lats = ds.latitude
 lons = ds.longitude
 
-## --------- Main example to use -----------
-## Grid manipulation
+#%% --------- Main example to use -----------
+#%% Grid manipulation
 # back_folder = './home/olmozavala/Dropbox/TutorialsByMe/Python/PythonExamples/Python/MatplotlibEx/map_backgrounds/'
 back_folder = './map_backgrounds/'
 # img = plt.imread('/home/olmozavala/Dropbox/TutorialsByMe/Python/PythonExamples/Python/MatplotlibEx/map_backgrounds/bluemarble.png')
@@ -38,7 +39,7 @@ plt.tight_layout()
 plt.savefig('./outputs/final.png')
 plt.show()
 
-## Imshow  (fast but innacurate)
+#%% Imshow  (fast but innacurate)
 extent = (lons.min() - 360, lons.max() - 360, lats.min(), lats.max())
 fig, ax = plt.subplots(1, 1, figsize=(8,6), subplot_kw={'projection': ccrs.PlateCarree()})
 ax.coastlines()
@@ -49,11 +50,11 @@ plt.savefig('./outputs/ex1.png')
 plt.tight_layout()
 plt.show()
 
-## Contourf  (slow but accurate)
+#%% Contourf  (slow but accurate)
 print("Plotting....")
 num_colors = 128
 fig, ax = plt.subplots(1,1, figsize=(8,6), subplot_kw={'projection': ccrs.PlateCarree()})
-ax.contourf(lons, lats, myvar, num_colors, cmap='inferno', extent=extent)
+ax.contourf(lons, lats, myvar, num_colors, cmap='inferno')
 ax.coastlines()
 # ax.stock_img()
 ax.set_title("Accurate but slow (and can't use stock img)")
@@ -61,7 +62,7 @@ plt.tight_layout()
 plt.show()
 print("Done!")
 
-## Colorbar (fast but innacurateareas)
+#%% Colorbar (fast but innacurateareas)
 extent = (lons.min() - 360, lons.max() - 360, lats.min(), lats.max())
 fig, ax = plt.subplots(1, 1, figsize=(8,6), subplot_kw={'projection': ccrs.PlateCarree()})
 ax.coastlines()
@@ -73,7 +74,7 @@ plt.tight_layout()
 # plt.savefig('./outputs/ex1.png')
 plt.show()
 
-## Multiple maps
+#%% Multiple maps
 extent = (lons.min() - 360, lons.max() - 360, lats.min(), lats.max())
 fig, axs = plt.subplots(1, 2, figsize=(10,4), subplot_kw={'projection': ccrs.PlateCarree()})
 # Left plot
@@ -89,7 +90,7 @@ plt.tight_layout()
 plt.suptitle("Multiple plots")
 plt.show()
 
-## Blue marble or TOpo
+#%% Blue marble or TOpo
 # https://visibleearth.nasa.gov/collection/1484/blue-marble
 img = plt.imread(join(back_folder, 'bathymetry_3600x1800.jpg'))
 img = plt.imread(join(back_folder, 'bluemarble_5400x2700.jpg'))
@@ -106,7 +107,7 @@ plt.tight_layout()
 plt.savefig('./outputs/exbluemarble.png')
 plt.show()
 
-## Grid manipulation
+#%% Grid manipulation
 img = plt.imread(join(back_folder, 'bluemarble.png'))
 extent = (lons.min() - 360, lons.max() - 360, lats.min(), lats.max())
 img_extent = (-180, 180, -90, 90)
@@ -123,3 +124,6 @@ plt.colorbar(im, location='right', shrink=.6, pad=.12)
 plt.tight_layout()
 plt.savefig('./outputs/final.png')
 plt.show()
+
+
+#%%
